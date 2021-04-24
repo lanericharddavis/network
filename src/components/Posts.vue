@@ -1,21 +1,27 @@
 <template>
   <div class="card my-3 shadow">
-    <div>
-      <img class="mt-3" :src="post.creator.picture" alt="...">
-      <h5 class="card-title">
-        {{ post.creator.name }}
-      </h5>
-    </div>
-    <div class="card-body">
-      <p class="card-text">
-        "{{ post.body }}""
-      </p>
-      <p class="card-text">
-        {{ post.createdAt }}
-      </p>
-      <button class="btn btn-danger">
-        Delete
-      </button>
+    <div class="row">
+      <div class="col-4">
+        <!-- <router-link :to="{name: 'ActiveProfilePage', params:{id:post.creator.id}}">
+        </router-link> -->
+        <img class="mt-3" :src="post.creator.picture" alt="...">
+        <h5 class="card-title">
+          {{ post.creator.name }}
+        </h5>
+      </div>
+      <div class="col-8">
+        <div class="card-body">
+          <p class="card-text">
+            "{{ post.body }}""
+          </p>
+          <p class="card-text">
+            {{ post.createdAt }}
+          </p>
+          <button class="btn btn-danger">
+            Delete
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -36,7 +42,7 @@ export default {
 
 <style lang="scss" scoped>
 img{
-  height: 3rem;
+  height: 5rem;
   border-radius: 50%;
 }
 </style>

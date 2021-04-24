@@ -1,12 +1,54 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <span class="navbar-text">
+      <button
+        class="btn btn-outline-primary text-uppercase"
+        @click="login"
+        v-if="!user.isAuthenticated"
+      >
+        Login
+      </button>
+
+      <div class="dropdown" v-else>
+        <div
+          class="dropdown-toggle"
+          @click="state.dropOpen = !state.dropOpen"
+        >
+          <img
+            :src="user.picture"
+            alt="user photo"
+            height="40"
+            class="rounded"
+          />
+          <span class="mx-3">{{ user.name }}</span>
+        </div>
+
+      </div>
+    </span>
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <h4 class="mx-2 text-primary">
-          Network
-        </h4>
+        <div
+          class="dropdown-menu p-0 list-group w-100"
+          :class="{ show: state.dropOpen }"
+          @click="state.dropOpen = false"
+        >
+          <router-link :to="{ name: 'Account' }">
+            <div class="list-group-item list-group-item-action hoverable">
+              Account
+            </div>
+          </router-link>
+          <div
+            class="list-group-item list-group-item-action hoverable"
+            @click="logout"
+          >
+            logout
+          </div>
+        </div>
       </div>
     </router-link>
+    <h4 class="mx-2 text-primary">
+      Network
+    </h4>
     <button
       class="navbar-toggler"
       type="button"
@@ -36,48 +78,17 @@
           </router-link>
         </li>
       </ul>
-      <span class="navbar-text">
-        <button
-          class="btn btn-outline-primary text-uppercase"
-          @click="login"
-          v-if="!user.isAuthenticated"
-        >
-          Login
-        </button>
-
-        <div class="dropdown" v-else>
-          <div
-            class="dropdown-toggle"
-            @click="state.dropOpen = !state.dropOpen"
-          >
-            <img
-              :src="user.picture"
-              alt="user photo"
-              height="40"
-              class="rounded"
-            />
-            <span class="mx-3">{{ user.name }}</span>
-          </div>
-          <div
-            class="dropdown-menu p-0 list-group w-100"
-            :class="{ show: state.dropOpen }"
-            @click="state.dropOpen = false"
-          >
-            <router-link :to="{ name: 'Account' }">
-              <div class="list-group-item list-group-item-action hoverable">
-                Account
-              </div>
-            </router-link>
-            <div
-              class="list-group-item list-group-item-action hoverable"
-              @click="logout"
-            >
-              logout
-            </div>
-          </div>
-        </div>
-      </span>
     </div>
+
+    <form class="form-inline">
+      <div class="form-group mx-sm-3 mb-2">
+        <label for="search" class="sr-only">Password</label>
+        <input type="text" class="form-control" id="search" placeholder="Search...">
+      </div>
+      <button type="submit" class="btn btn-primary mb-2">
+        Search
+      </button>
+    </form>
   </nav>
 </template>
 

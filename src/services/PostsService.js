@@ -8,14 +8,15 @@ class PostsService {
     console.log('getting all posts', res.data)
   }
 
+  // TODO figure out pages and link to next/prev button
   async getNextPgPosts() {
-    const res = await api.get(`api/posts?page=${}`)
+    const res = await api.get('api/posts?page=')
     AppState.posts = res.data.posts
     console.log('getting next pg of posts', res.data)
   }
 
   async getPreviousPgPosts() {
-    const res = await api.get(`api/posts?page=${}`)
+    const res = await api.get('api/posts?page=')
     AppState.posts = res.data.posts
     console.log('getting previous pg of posts', res.data)
   }

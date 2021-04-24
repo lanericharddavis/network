@@ -1,7 +1,7 @@
 <template>
-  <div class="commercials col-md-12">
+  <div class="commercials col-md-12 my-3">
     <div class=" position-relative" v-if="commercial">
-      <img :src="commercial.tall" alt="">
+      <img :src="commercial.square" alt="">
     </div>
   </div>
 </template>
@@ -20,5 +20,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+img{
+  height: 15rem;
+}
 </style>

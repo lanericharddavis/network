@@ -13,6 +13,14 @@
       </div>
       <div class="col-11 col-md-6 order-3 order-md-2">
         <Posts v-for="post in state.posts" :key="post.id" :post="post" />
+        <div class="col-11">
+          <button class="btn btn-info mx-1 mb-2">
+            Previous
+          </button>
+          <button class="btn btn-info mx-1 mb-2">
+            Next
+          </button>
+        </div>
       </div>
       <div class="col-12 col-md-3 order-2 order-md-3">
         <Commercials v-for="commercial in state.commercials" :key="commercial.title" :commercial="commercial" />
