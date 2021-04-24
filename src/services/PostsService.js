@@ -7,6 +7,24 @@ class PostsService {
     AppState.posts = res.data.posts
     console.log('getting all posts', res.data)
   }
+
+  async getNextPgPosts() {
+    const res = await api.get(`api/posts?page=${}`)
+    AppState.posts = res.data.posts
+    console.log('getting next pg of posts', res.data)
+  }
+
+  async getPreviousPgPosts() {
+    const res = await api.get(`api/posts?page=${}`)
+    AppState.posts = res.data.posts
+    console.log('getting previous pg of posts', res.data)
+  }
+
+  async deletePosts(id) {
+    const res = await api.findOneAndDelete({ _id: id })
+    AppState.posts = res.data.posts
+    console.log('deleted post', res.data)
+  }
 }
 
 export const postsService = new PostsService()
