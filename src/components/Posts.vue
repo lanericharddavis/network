@@ -1,7 +1,7 @@
 <template>
   <div class="card my-3 shadow">
     <div class="row">
-      <div class="col-4">
+      <div class="col-12 col-md-4">
         <!-- <router-link :to="{name: 'ActiveProfilePage', params:{id:post.creator.id}}">
         </router-link> -->
         <img class="mt-3" :src="post.creator.picture" alt="...">
@@ -9,7 +9,7 @@
           {{ post.creator.name }}
         </h5>
       </div>
-      <div class="col-8">
+      <div class="col-12 col-md-8">
         <div class="card-body">
           <p class="card-text">
             "{{ post.body }}""
