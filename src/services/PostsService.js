@@ -22,13 +22,15 @@ class PostsService {
 
   // TODO figure out pages and link to next/prev button
   async getNextPgPosts() {
-    const res = await api.get('api/posts?page=')
+    console.log('clicked next pg')
+    const res = await api.get('api/posts?page=newer')
     AppState.posts = res.data.posts
     console.log('getting next pg of posts', res.data)
   }
 
   async getPreviousPgPosts() {
-    const res = await api.get('api/posts?page=')
+    console.log('clicked previous pg')
+    const res = await api.get('api/posts?page=older')
     AppState.posts = res.data.posts
     console.log('getting previous pg of posts', res.data)
   }

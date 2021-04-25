@@ -10,10 +10,10 @@
       <div class="col-11 col-md-6 order-3 order-md-2 p-5">
         <Posts v-for="post in state.posts" :key="post.id" :post="post" />
         <div class="col-11">
-          <button class="btn btn-info mx-1 mb-2">
+          <button class="btn btn-info mx-1 mb-2" @click="getPreviousPgPosts">
             Previous
           </button>
-          <button class="btn btn-info mx-1 mb-2">
+          <button class="btn btn-info mx-1 mb-2" @click="getNextPgPosts">
             Next
           </button>
         </div>
@@ -51,7 +51,21 @@ export default {
       }
     })
     return {
-      state
+      state,
+      async getNextPgPosts() {
+        try {
+          await postsService.getNextPgPosts()
+        } catch (error) {
+          Notification.toast('Error: ' + error, 'error')
+        }
+      },
+      async getPreviousPgPosts() {
+        try {
+          await postsService.getNextPgPosts()
+        } catch (error) {
+          Notification.toast('Error: ' + error, 'error')
+        }
+      }
     }
   }
 }

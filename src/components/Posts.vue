@@ -2,7 +2,7 @@
   <div class="card my-3 shadow">
     <div class="row">
       <div class="col-12 col-md-4">
-        <router-link :to="{name: 'ActiveProfile'}">
+        <router-link :to="{name: 'ActiveProfilePage'}">
           <img class="mt-3" :src="post.creator.picture" alt="...">
         </router-link>
         <h5 class="card-title">
@@ -23,6 +23,9 @@
         <button class="btn btn-sm btn-outline-info">
           Like
         </button>
+        <p class="text-info m-2">
+          {{ post.likes.length }}
+        </p>
       </div>
     </div>
   </div>
