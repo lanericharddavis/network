@@ -2,7 +2,7 @@
   <div class="card my-3 shadow">
     <div class="row">
       <div class="col-12 col-md-4">
-        <router-link :to="{name: 'ActiveProfilePage'}">
+        <router-link :to="{name: 'Profile', params: {id: post.creatorId}}">
           <img class="mt-3" :src="post.creator.picture" alt="...">
         </router-link>
         <h5 class="card-title">
@@ -19,7 +19,7 @@
           </p>
         </div>
       </div>
-      <div class="col-12 col-md-2 pb-2 d-flex align-items-end">
+      <div class="col-12 col-md-2 pb-2 d-flex align-items-end justify-content-center">
         <button class="btn btn-sm btn-outline-info">
           Like
         </button>
