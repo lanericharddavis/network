@@ -9,7 +9,7 @@
           {{ post.creator.name }}
         </h5>
       </div>
-      <div class="col-12 col-md-8">
+      <div class="col-12 col-md-6">
         <div class="card-body">
           <p class="card-text">
             "{{ post.body }}""
@@ -18,6 +18,11 @@
             {{ post.createdAt }}
           </p>
         </div>
+      </div>
+      <div class="col-12 col-md-2 pb-2 d-flex align-items-end">
+        <button class="btn btn-sm btn-outline-info">
+          Like
+        </button>
       </div>
     </div>
   </div>
