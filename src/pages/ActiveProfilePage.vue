@@ -1,28 +1,16 @@
 <template>
-  <div class="profile-page">
-    <h1>Welcome to Profile Page!</h1>
-  </div>
-  <div class="card my-3 shadow">
-    <div class="row">
-      <!-- <Posts v-for="post in state.posts" :key="post.id ===" :post="post" /> -->
-    </div>
+  <div class="active-profile">
+    <h1>Welcome to the Active Profile's Page</h1>
   </div>
 </template>
 
 <script>
-
 export default {
-  name: 'ProfilePage',
-  props: {
-    activeProfile: {
-      type: Object,
-      required: true
-    }
-  },
+  name: 'ActiveProfilePage',
   setup() {
-    return {
-    }
-  }
+    return {}
+  },
+  components: {}
 }
 </script>
 

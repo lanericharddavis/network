@@ -4,12 +4,12 @@ import { api } from './AxiosService'
 class ProfileService {
   async getByProfileId(id) {
     const res = await api.get('api/profiles/:id')
-    AppState.profile = res.data
+    AppState.activeProfile = res.data
   }
 
   async getPostsByProfileId(id) {
     const res = await api.get('api/profiles/:id/posts')
-    AppState.profile = res.data
+    AppState.activePosts = res.data
   }
 }
 

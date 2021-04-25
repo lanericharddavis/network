@@ -2,9 +2,9 @@
   <div class="card my-3 shadow">
     <div class="row">
       <div class="col-12 col-md-4">
-        <!-- <router-link :to="{name: 'ActiveProfilePage', params:{id:post.creator.id}}">
-        </router-link> -->
-        <img class="mt-3" :src="post.creator.picture" alt="...">
+        <router-link :to="{name: 'ActiveProfile'}">
+          <img class="mt-3" :src="post.creator.picture" alt="...">
+        </router-link>
         <h5 class="card-title">
           {{ post.creator.name }}
         </h5>
@@ -17,9 +17,6 @@
           <p class="card-text">
             {{ post.createdAt }}
           </p>
-          <button class="btn btn-danger">
-            Delete
-          </button>
         </div>
       </div>
     </div>
