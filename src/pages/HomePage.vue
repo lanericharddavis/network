@@ -3,13 +3,9 @@
     <div class="row">
       <div class="col-12 col-md-3 order-1 order-md-1">
         <!-- <Account v-if="state.user.id === state.profile.creator.id" /> -->
-        <h4> USER INFO</h4>
-        <button class="btn btn-primary">
-          Edit Profile
-        </button>
-        <button class="btn btn-secondary">
-          Create Post
-        </button>
+        <h4 class="mt-2">
+          Login to Post
+        </h4>
       </div>
       <div class="col-11 col-md-6 order-3 order-md-2 p-5">
         <Posts v-for="post in state.posts" :key="post.id" :post="post" />

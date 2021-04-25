@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light gradient-background">
     <span class="navbar-text">
       <button
         class="btn btn-outline-primary text-uppercase"
@@ -137,5 +137,9 @@ a:hover {
 }
 .nav-item .nav-link.router-link-exact-active{
   color: var(--primary);
+}
+.gradient-background{
+  background: rgb(0,255,213);
+background: linear-gradient(90deg, rgba(0,255,213,1) 39%, rgba(200,255,235,0) 84%, rgba(0,255,213,1) 100%);
 }
 </style>
