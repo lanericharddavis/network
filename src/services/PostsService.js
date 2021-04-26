@@ -35,17 +35,19 @@ class PostsService {
     console.log('getting previous pg of posts', res.data)
   }
 
-  async deletePosts(id) {
-    const res = await api.findOneAndDelete({ _id: id })
-    AppState.posts = res.data.posts
+  async deletePost(id) {
+    console.log('Delete Button Pressed', id)
+    const res = await api.delete('api/posts/' + id)
+    AppState.posts = AppState.posts.filter(post => post.id !== id)
     console.log('deleted post', res.data)
   }
 
-  // async create(data) {
-  //   const res = await api.post('api/posts', data)
-  //   router.push({ name: 'ProjectDetails', params: { id: res.data.id } })
-  //   // this.getAll()
-  // }
+  async createPost(data) {
+    console.log('Post Button Pressed', data)
+    const res = await api.post('api/posts', data)
+    AppState.posts.push(res.data)
+    console.log('Post Created', res.data)
+  }
 }
 
 export const postsService = new PostsService()
