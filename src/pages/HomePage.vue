@@ -61,7 +61,7 @@ export default {
       },
       async getPreviousPgPosts() {
         try {
-          await postsService.getNextPgPosts()
+          await postsService.getPreviousPgPosts()
         } catch (error) {
           Notification.toast('Error: ' + error, 'error')
         }

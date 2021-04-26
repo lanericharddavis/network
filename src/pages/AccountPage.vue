@@ -38,12 +38,20 @@
               </h5>
             </div>
             <div class="col-12 col-md-8">
-              <form>
+              <form @submit.prevent="createPost">
                 <div class="form-title mt-1">
                   Share Your Thoughts With The Network
                 </div>
                 <div class="form-group mt-3 mr-3">
-                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Type Post Here..."></textarea>
+                  <input class="form-control"
+                         id="createPost"
+                         type="text"
+                         aria-describedby="postInput"
+                         rows="3"
+                         placeholder="Type Post Here..."
+                         v-model="state.newPost.body"
+                         required
+                  >
                 </div>
                 <button class="btn btn-outline-secondary mb-3" type="submit">
                   Post
@@ -54,10 +62,10 @@
         </div>
         <Posts v-for="post in state.posts" :key="post.id" :post="post" />
         <div class="col-11">
-          <button class="btn btn-info mx-1 mb-2">
+          <button class="btn btn-info mx-1 mb-2" @click="getPreviousPgPosts">
             Previous
           </button>
-          <button class="btn btn-info mx-1 mb-2">
+          <button class="btn btn-info mx-1 mb-2" @click="getNextPgPosts">
             Next
           </button>
         </div>
@@ -81,6 +89,9 @@ export default {
   name: 'Account',
   setup() {
     const state = reactive({
+      newPost: {
+        body: ''
+      },
       posts: computed(() => AppState.posts),
       commercials: computed(() => AppState.commercials)
       // account: computed(() => AppState.account)
@@ -96,7 +107,29 @@ export default {
     })
     return {
       state,
-      account: computed(() => AppState.account)
+      account: computed(() => AppState.account),
+      async getNextPgPosts() {
+        try {
+          await postsService.getNextPgPosts()
+        } catch (error) {
+          Notification.toast('Error: ' + error, 'error')
+        }
+      },
+      async getPreviousPgPosts() {
+        try {
+          await postsService.getPreviousPgPosts()
+        } catch (error) {
+          Notification.toast('Error: ' + error, 'error')
+        }
+      },
+      async createPost() {
+        try {
+          await postsService.createPost(state.newPost)
+          state.newPost = {}
+        } catch (error) {
+          Notification.toast('Error: ' + error, 'error')
+        }
+      }
     }
   }
 }
