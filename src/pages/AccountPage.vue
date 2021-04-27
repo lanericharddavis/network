@@ -19,9 +19,9 @@
               </h5>
             </div>
             <div class="col-12 col-md-8">
-              <h4>{{ account.name }}</h4>
-              <h4>{{ account.email }}</h4>
-              <h4>{{ account.graduated }}</h4>
+              <h4>Name: {{ account.name }}</h4>
+              <h4>Email: {{ account.email }}</h4>
+              <h4>Codeworks Graduate: {{ account.graduated }}</h4>
               <button class="btn btn-outline-secondary mb-3" type="submit">
                 Edit Profile
               </button>

@@ -4,7 +4,8 @@
       <div class="col-12 col-md-3 order-1 order-md-1">
         <!-- <Account v-if="state.user.id === state.profile.creator.id" /> -->
         <h4 class="mt-2">
-          Login to Post
+          Welcome<br>
+          To The Network!
         </h4>
       </div>
       <div class="col-11 col-md-6 order-3 order-md-2 p-5">
