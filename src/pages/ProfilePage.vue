@@ -1,7 +1,7 @@
 <template>
   <div class="profile-page">
     <div class="text-center">
-      <h1>Welcome to "This Person's" Profile Page!</h1>
+      <h1>Welcome to {{ state.profile.name }}'s Profile Page!</h1>
     </div>
     <div class="row">
       <div class="col-11 col-md-9 order-3 order-md-2 p-5">
@@ -11,15 +11,15 @@
           </div>
           <div class="row spill-offset">
             <div class="col-12 col-md-4">
-              <img class="mt-3 ml-md-2 md-img" src="//placehold.it/200x200/" alt="...">
+              <img class="mt-3 ml-md-2 md-img" :src="state.profile.picture" alt="...">
               <h5 class="card-title ml-md-3">
-                NAME
+                {{ state.profile.name }}
               </h5>
             </div>
             <div class="col-12 col-md-8 mt-3">
-              <h4>Profile's Name</h4>
-              <h4>Email</h4>
-              <h4>Graduated?</h4>
+              <h4>Name: {{ state.profile.name }}</h4>
+              <h4>Email: {{ state.profile.email }}</h4>
+              <h4>BoiseCodeworks Graduate: {{ state.profile.graduated }}</h4>
             </div>
           </div>
         </div>
@@ -43,31 +43,33 @@
 
 <script>
 import { reactive, computed, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
 import Notification from '../utils/Notification'
 import { postsService } from '../services/PostsService'
 import { commercialsService } from '../services/CommercialsService'
-import { profilesService } from '../services/AccountService'
+import { profileService } from '../services/ProfileService'
 import { AppState } from '../AppState'
 
 export default {
   name: 'ProfilePage',
-  setup(id) {
+  setup() {
+    const route = useRoute()
     const state = reactive({
       posts: computed(() => AppState.posts),
       commercials: computed(() => AppState.commercials),
-      profile: computed(() => AppState.account)
+      profile: computed(() => AppState.activeProfile)
     })
     onMounted(async() => {
       try {
-        await profilesService.getByProfileId(id)
-        await profilesService.getPostsByProfileId(id)
+        await profileService.getProfile(route.params.id)
+        await profileService.getProfilePosts(route.params.id)
         await commercialsService.getAll()
-        // await accountService.getAccount()
       } catch (error) {
         Notification.toast('Error: ' + error, 'error')
       }
     })
     return {
+      route,
       state,
       async getNextPgPosts() {
         try {
