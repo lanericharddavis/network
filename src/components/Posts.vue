@@ -16,19 +16,24 @@
           </p>
           <p class="card-text">
             {{ post.createdAt }}
+            <img v-if="post.img" src="post.imgUrl" alt="">
           </p>
         </div>
       </div>
-      <div class="col-12 col-md-2 pb-2 d-flex align-items-end justify-content-center">
-        <button class="btn btn-sm btn-outline-danger" @click="deletePost">
-          delete
-        </button>
-        <button class="btn btn-sm btn-outline-info" @click="toggleLike">
+    </div>
+    <div class="row justify-content-around">
+      <div class="col-3 d-flex align-items-center mr-5">
+        <button class="btn btn-sm btn-outline-info" @click="likePost(post.id)">
           Like
         </button>
         <p class="text-info m-2">
           {{ post.likes.length }}
         </p>
+      </div>
+      <div class="col-3">
+        <button v-if="state.account.id==post.creatorId" class="btn btn-sm btn-outline-danger" @click="deletePost">
+          delete
+        </button>
       </div>
     </div>
   </div>
@@ -38,6 +43,7 @@
 import { reactive, computed } from 'vue'
 import { AppState } from '../AppState'
 import { postsService } from '../services/PostsService'
+import Notification from '../utils/Notification'
 
 export default {
   name: 'Posts',
@@ -47,26 +53,35 @@ export default {
       required: true
     }
   },
-  setup() {
+  setup(props) {
     const state = reactive({
-      post: computed(() => AppState.posts)
+      post: computed(() => AppState.posts),
+      account: computed(() => AppState.account)
+      // props here and put a v-if on the delete button to hide button
+      // AppState accountID compare to usersID
     })
 
     // onMounted(async() => {
     //   try {
-    //     await postsService.getPostsByProfileId()
+    //     await postsService.getPostsByProfileId(route.params.id)
     //   } catch (error) {
     //     Notification.toast('Error: ' + error, 'error')
     //   }
     // })
 
     return {
-      toggleLike() {
-        AppState.posts.likes += 1
+      state,
+      // route,
+      async likePost() {
+        try {
+          await postsService.likePost(props.post.id)
+        } catch (error) {
+          Notification.toast('Musted be logged in to Like Stuff')
+        }
       },
       async deletePost() {
         try {
-          await postsService.deletePost(state.post.id)
+          await postsService.deletePost(props.post.id)
         } catch (error) {
           Notification.toast('Error ' + error, 'error')
         }

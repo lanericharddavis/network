@@ -89,9 +89,7 @@ export default {
   name: 'Account',
   setup() {
     const state = reactive({
-      newPost: {
-        body: ''
-      },
+      newPost: {},
       posts: computed(() => AppState.posts),
       commercials: computed(() => AppState.commercials)
       // account: computed(() => AppState.account)
@@ -126,6 +124,7 @@ export default {
         try {
           await postsService.createPost(state.newPost)
           state.newPost = {}
+          Notification.toast('Post Created!')
         } catch (error) {
           Notification.toast('Error: ' + error, 'error')
         }

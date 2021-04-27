@@ -46,20 +46,21 @@ import { reactive, computed, onMounted } from 'vue'
 import Notification from '../utils/Notification'
 import { postsService } from '../services/PostsService'
 import { commercialsService } from '../services/CommercialsService'
-// import { accountService } from '../services/AccountService'
+import { profilesService } from '../services/AccountService'
 import { AppState } from '../AppState'
 
 export default {
   name: 'ProfilePage',
-  setup() {
+  setup(id) {
     const state = reactive({
       posts: computed(() => AppState.posts),
-      commercials: computed(() => AppState.commercials)
-      // account: computed(() => AppState.account)
+      commercials: computed(() => AppState.commercials),
+      profile: computed(() => AppState.account)
     })
     onMounted(async() => {
       try {
-        await postsService.getAll()
+        await profilesService.getByProfileId(id)
+        await profilesService.getPostsByProfileId(id)
         await commercialsService.getAll()
         // await accountService.getAccount()
       } catch (error) {
