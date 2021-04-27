@@ -23,7 +23,7 @@
             </div>
           </div>
         </div>
-
+        <!--REVIEW <div>{{ state.profilePosts }}</div> -->
         <Posts class="text-center" v-for="post in state.posts" :key="post.id" :post="post" />
         <div class="col-11 d-flex justify-content-center">
           <button class="btn btn-info mx-1 mb-2" @click="getPreviousPgPosts">
@@ -52,10 +52,16 @@ import { AppState } from '../AppState'
 
 export default {
   name: 'ProfilePage',
+  props: {
+    post: {
+      type: Object,
+      required: true
+    }
+  },
   setup() {
     const route = useRoute()
     const state = reactive({
-      posts: computed(() => AppState.posts),
+      profilePosts: computed(() => AppState.activePosts),
       commercials: computed(() => AppState.commercials),
       profile: computed(() => AppState.activeProfile)
     })
